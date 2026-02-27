@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const { message } = await req.json();
     const lowerMessage = message.toLowerCase();
 
-    // 1️⃣ Total products
+    
     if (lowerMessage.includes("how many") && lowerMessage.includes("product")) {
       const count = await prisma.product.count();
       return NextResponse.json({
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       });
     }
   
-    // 2️⃣ Low stock items
+    
     if (lowerMessage.includes("low stock")) {
       const lowStockItems = await prisma.product.findMany({
         where: {
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       });
     }
 
-    // 3️⃣ Product price
+    
     if (lowerMessage.includes("price of")) {
       const productName = lowerMessage.split("price of")[1]?.trim();
 
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
       });
     }
 
-    // 4️⃣ Product quantity
+    
     if (lowerMessage.includes("quantity of")) {
       const productName = lowerMessage.split("quantity of")[1]?.trim();
 
